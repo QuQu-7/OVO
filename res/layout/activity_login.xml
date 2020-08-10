@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ovo_login">
+
+    <Button
+        android:id="@+id/login_cancel"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        style="?android:attr/borderlessButtonStyle"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/login_cancel"
+        android:layout_marginTop="50dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ovo_logo_light"/>
+
+
+    <LinearLayout
+        android:id="@+id/login_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="220dp"
+        android:paddingRight="40dp"
+        android:paddingLeft="40dp">
+
+        <EditText
+            android:id="@+id/login_username"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:hint="用户名"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:theme="@style/MyEditText"
+            android:textSize="25dp"/>
+
+        <EditText
+            android:id="@+id/login_password"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:inputType="textPassword"
+            android:layout_centerHorizontal="true"
+            android:hint="密码"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:theme="@style/MyEditText"
+            android:textSize="25dp"/>
+
+        <EditText
+            android:id="@+id/login_repassword"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:inputType="textPassword"
+            android:hint="确认密码"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:theme="@style/MyEditText"
+            android:textSize="25dp"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/login_register"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="一键注册"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/login_message"
+        android:layout_marginTop="50dp"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        style="?android:attr/borderlessButtonStyle"
+        android:background="@drawable/button_border" />
+    <Button
+        android:id="@+id/login_log"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="登录"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/login_message"
+        android:layout_marginTop="120dp"
+        android:textSize="20dp"
+        android:textColor="#ffffff"
+        style="?android:attr/borderlessButtonStyle"
+        android:background="@drawable/button_border" />
+
+
+</RelativeLayout>
