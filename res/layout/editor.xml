@@ -1,0 +1,156 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="编辑资料"
+        android:layout_marginTop="25dp"
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:layout_centerHorizontal="true"/>
+
+    <cn.itcase.ovo.RoundImageView
+        android:id="@+id/editor_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_marginTop="90dp"
+        android:src="@drawable/default_icon" />
+
+    <TextView
+        android:id="@+id/editor_clickchangeicon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editor_icon"
+        android:layout_centerHorizontal="true"
+        android:text="点击更换头像"
+        android:textColor="#ffffff"
+        android:textSize="20sp"/>
+
+    <LinearLayout
+        android:id="@+id/editor_ll_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editor_clickchangeicon"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="昵称"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/namechange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="             请输入昵称"
+            android:theme="@style/MyEditText"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:textStyle="italic"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/editor_ll_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/editor_ll_name"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="性别"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"/>
+
+        <RadioGroup
+            android:id="@+id/reSex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="30dp">
+
+            <RadioButton
+                android:id="@+id/sexMan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="#ffffff"
+                android:textSize="20sp"
+                android:text="男"
+                android:textColor="#ffffff"/>
+            <RadioButton
+                android:id="@+id/sexWoman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:buttonTint="#ffffff"
+                android:textSize="20sp"
+                android:text="女"
+                android:textColor="#ffffff"/>
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/editor_ll_information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editor_ll_gender"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="个性签名"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="20dp"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:id="@+id/titlechange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="       请输入个性签名"
+            android:theme="@style/MyEditText"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:textStyle="italic"
+            android:textSize="18sp"/>
+
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/upLoad"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:onClick="upLoad"
+        android:text="保存"
+        android:textSize="20sp"
+        android:layout_below="@id/editor_ll_information"
+        android:layout_marginTop="40dp"
+        android:layout_centerHorizontal="true"/>
+
+
+
+
+
+
+</RelativeLayout>
