@@ -1,120 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ll_page_two"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:background="@drawable/background"
+    android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/video_list2"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <LinearLayout
-        android:id="@+id/home2_ll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp">
-
-        <cn.itcase.ovo.RoundImageView
-            android:id="@+id/home2_iv_icon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="220dp"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/ovo_logo_fang"/>
-
-        <ImageView
-            android:id="@+id/home2_iv_like"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/selector_like"/>
-
-        <TextView
-            android:id="@+id/home2_tv_like"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/home2_iv_like"
-            android:text="123"
-            android:textColor="#ffffff"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="15dp"/>
-
-        <ImageView
-            android:id="@+id/home2_iv_message"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:src="@mipmap/comment"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/home2_iv_like"
-            android:text="123"
-            android:textColor="#ffffff"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="15dp"/>
-
-        <ImageView
-            android:id="@+id/home2_iv_repost"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:src="@mipmap/repost"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/home2_iv_like"
-            android:text="123"
-            android:textColor="#ffffff"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="15dp"/>
-
-        <ImageView
-            android:id="@+id/home2_iv_samestyle"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:src="@mipmap/same_style"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="20dp"
-        android:layout_alignBottom="@+id/home2_ll">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="\@测试用户"
-            android:textColor="#ffffff"
-            android:textSize="20sp"
-            android:layout_above="@+id/home2_tv_content"/>
-
-        <TextView
-            android:id="@+id/home2_tv_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="#生活#yes ok"
-            android:textColor="#ffffff"
-            android:textSize="20sp"
-            />
-    </LinearLayout>
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/video_list2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
-</RelativeLayout>
+
+</LinearLayout>
