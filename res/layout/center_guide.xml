@@ -51,6 +51,17 @@
         android:layout_centerHorizontal="true"
         android:textColor="#ffffff"
         android:textSize="15dp"/>
+    
+    <Button
+        android:id="@+id/me_follow"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/me_introduce"
+        android:layout_marginTop="15dp"
+        android:text="关注"
+        android:textColor="#ffffff"
+        android:background="@drawable/selector_follow"/>
 
     <LinearLayout
         android:id="@+id/me_linearlayout"
