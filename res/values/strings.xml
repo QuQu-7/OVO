@@ -10,7 +10,7 @@
     <drawable name="clr_normal3">#8674a1</drawable>
     <drawable name="clr_pressed3">#586695</drawable>
 
-    <drawable name="before_follow">#971B12</drawable>
-    <drawable name="after_follow">#dddddd</drawable>
+    <drawable name="before_follow">#D3473E</drawable>
+    <drawable name="after_follow">#C6C4C4</drawable>
 
 </resources>
