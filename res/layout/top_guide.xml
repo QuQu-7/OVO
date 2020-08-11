@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout
+    android:background="#60A8CA"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <LinearLayout
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:gravity="bottom"
+        android:elevation="10dp"
+        android:orientation="horizontal"
+        android:id="@+id/top_lin">
+
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="vertical"
+        android:id="@+id/top_ll_tab_one"
+        android:layout_weight="1">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/top_tv_tab_one"
+        android:text="    关注"
+        android:textSize="20dp"
+        android:textColor="#FFFFFF"
+        android:paddingBottom="5dp"
+        android:layout_marginTop="0dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="|"
+        android:textColor="#ffffff"
+        android:textSize="30sp"/>
+
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="vertical"
+        android:id="@+id/top_ll_tab_two"
+        android:layout_weight="1">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/top_tv_tab_two"
+        android:text="推荐    "
+        android:textSize="20dp"
+        android:textColor="#FFFFFF"
+        android:paddingBottom="5dp"
+        android:layout_marginTop="0dp"/>
+
+</LinearLayout>
+
+</LinearLayout>
+
+
+
+    <FrameLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/top_fl_layout" />
+
+
+
+</RelativeLayout>

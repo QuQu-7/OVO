@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <cn.itcase.ovo_ui.RoundImageView
+        android:id="@+id/message_item_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp" />
+
+    <TextView
+        android:id="@+id/message_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/message_item_icon"
+        android:textSize="18sp"
+        android:layout_alignTop="@+id/message_item_icon"
+        android:layout_marginLeft="10dp"
+        android:textColor="#ffffff"/>
+
+    <TextView
+        android:id="@+id/message_item_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/message_item_name"
+        android:layout_toRightOf="@+id/message_item_icon"
+        android:textSize="15sp"
+        android:layout_alignBottom="@+id/message_item_icon"
+        android:layout_marginLeft="10dp"
+        android:textColor="#b6b6b6"/>
+
+
+</RelativeLayout>
