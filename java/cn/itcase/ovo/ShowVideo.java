@@ -118,12 +118,12 @@ public class ShowVideo extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //鍏堣繑鍥炴甯哥姸鎬�
+        //先返回正常状态
         if (orientationUtils.getScreenType() == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
             videoPlayer.getFullscreenButton().performClick();
             return;
         }
-        //閲婃斁鎵�鏈�
+        //释放所有
         videoPlayer.setVideoAllCallBack(null);
         super.onBackPressed();
     }
