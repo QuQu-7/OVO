@@ -1,4 +1,4 @@
-package cn.itcase.ovo_ui;
+package cn.itcase.ovo_ui.fragment;
 
 
 import android.content.Intent;
