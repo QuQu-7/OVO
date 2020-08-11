@@ -1,14 +1,17 @@
-package cn.itcase.ovo.fragment;
+package cn.itcase.ovo_ui;
 
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
@@ -16,11 +19,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 
 import com.jaeger.library.StatusBarUtil;
@@ -29,29 +36,29 @@ import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.itcase.ovo.utils.DpTools;
-import cn.itcase.ovo.List_Video_Adapter;
-import cn.itcase.ovo.R;
-import cn.itcase.ovo.ScrollCalculatorHelper;
-import cn.itcase.ovo.Video_Bean;
-import cn.itcase.ovo.act.MainActivity;
 
+public class FragmentTwo extends androidx.fragment.app.Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
-public class FragmentTwo extends androidx.fragment.app.Fragment {
-
+    private SwipeRefreshLayout refreshLayout;
     private RecyclerView recyclerView;
     private final String mp4_a = "http://42.159.72.121/video/jsxh.mp4";
     private final String mp4_b = "http://42.159.72.121/video/miao.mp4";
     private List<Video_Bean> list;
+    private int lastVisibleItem = 0;
+    private final int PAGE_COUNT = 10;
+    private GridLayoutManager mLayoutManager;
+    private VideoAdapter adapter;
+    private Handler mHandler = new Handler(Looper.getMainLooper());
+
 
     //控制滚动播放
     ScrollCalculatorHelper scrollCalculatorHelper;
 
-    private ImageView iv_like;
-    private TextView tv_like;
-    private ImageView iv_comment;
-    int flag = 0;
-    int int_like=0;
+//    private ImageView iv_like;
+//    private TextView tv_like;
+//    private ImageView iv_comment;
+//    int flag = 0;
+//    int int_like=0;
 
 
     @Nullable
@@ -60,9 +67,12 @@ public class FragmentTwo extends androidx.fragment.app.Fragment {
 
         recyclerView = view.findViewById(R.id.video_list2);
 
-        iv_like=view.findViewById(R.id.home2_iv_like);
-        iv_comment=view.findViewById(R.id.home2_iv_message);
-        tv_like=view.findViewById(R.id.home2_tv_like);
+//        iv_like=view.findViewById(R.id.home2_iv_like);
+//        iv_comment=view.findViewById(R.id.home2_iv_message);
+//        tv_like=view.findViewById(R.id.home2_tv_like);
+
+        refreshLayout = view.findViewById(R.id.refreshLayout2);
+        recyclerView = view.findViewById(R.id.video_list2);
 
         return view;
 
@@ -73,46 +83,52 @@ public class FragmentTwo extends androidx.fragment.app.Fragment {
 
         StatusBarUtil.setColor(getActivity(), getResources().getColor(R.color.colorAccent));
 
-        iv_like.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+//        iv_like.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                Intent intent = new Intent(getActivity(),MainActivity.class);
+////                startActivity(intent);
+//                switch(flag) {
+//                    case 0:
+//                        v.setActivated(true);
+//                        flag = 1;
+//                        int_like=Integer.valueOf(tv_like.getText().toString()) + 1;
+//                        tv_like.setText(new String(String.valueOf(int_like)));
+//                        break;
+//                    case 1:
+//                        v.setActivated(false);
+//                        flag = 0;
+//                        int_like=Integer.valueOf(tv_like.getText().toString()) - 1;
+//                        tv_like.setText(new String(String.valueOf(int_like)));
+//                        break;
+//                }
+//
+//            }
+//        });
+//
+//        iv_comment.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
 //                Intent intent = new Intent(getActivity(),MainActivity.class);
 //                startActivity(intent);
-                switch(flag) {
-                    case 0:
-                        v.setActivated(true);
-                        flag = 1;
-                        int_like=Integer.valueOf(tv_like.getText().toString()) + 1;
-                        tv_like.setText(new String(String.valueOf(int_like)));
-                        break;
-                    case 1:
-                        v.setActivated(false);
-                        flag = 0;
-                        int_like=Integer.valueOf(tv_like.getText().toString()) - 1;
-                        tv_like.setText(new String(String.valueOf(int_like)));
-                        break;
-                }
-
-            }
-        });
-
-        iv_comment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
+//            }
+//        });
 
         initData();
         init();
+        initRefreshLayout();
+        initRecyclerView();
 
     }
 
+    //上拉加载更多的东西写这里
+    //现在是总共有40行，每10行刷新一次，一直到40行结束会显示“没有更多数据了”
+    //40也可以改，改成多少都可以
+    //建议把url（网页链接）设置成“test1""test2"等等，这样比较好写for循环
     private void initData() {
         //视频数据
         list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 40; i++) {
 
             Video_Bean video_bean = new Video_Bean();
             if (i % 2 == 0) {
@@ -176,6 +192,85 @@ public class FragmentTwo extends androidx.fragment.app.Fragment {
         });
 
 
+    }
+
+    private void initRefreshLayout() {
+        refreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light,
+                android.R.color.holo_orange_light, android.R.color.holo_green_light);
+        refreshLayout.setOnRefreshListener(this);
+    }
+
+    private void initRecyclerView() {
+        adapter = new VideoAdapter(getDatas(0, PAGE_COUNT), getActivity(), getDatas(0, PAGE_COUNT).size() > 0 ? true : false);
+        mLayoutManager = new GridLayoutManager(getActivity(), 1);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    if (adapter.isFadeTips() == false && lastVisibleItem + 1 == adapter.getItemCount()) {
+                        mHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateRecyclerView(adapter.getRealLastPosition(), adapter.getRealLastPosition() + PAGE_COUNT);
+                            }
+                        }, 500);
+                    }
+
+                    if (adapter.isFadeTips() == true && lastVisibleItem + 2 == adapter.getItemCount()) {
+                        mHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                updateRecyclerView(adapter.getRealLastPosition(), adapter.getRealLastPosition() + PAGE_COUNT);
+                            }
+                        }, 500);
+                    }
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                lastVisibleItem = mLayoutManager.findLastVisibleItemPosition();
+            }
+        });
+    }
+
+    private List<Video_Bean> getDatas(final int firstIndex, final int lastIndex) {
+        List<Video_Bean> resList = new ArrayList<>();
+        for (int i = firstIndex; i < lastIndex; i++) {
+            if (i < list.size()) {
+                resList.add(list.get(i));
+            }
+        }
+        return resList;
+    }
+
+    private void updateRecyclerView(int fromIndex, int toIndex) {
+        List<Video_Bean> newDatas = getDatas(fromIndex, toIndex);
+        if (newDatas.size() > 0) {
+            adapter.updateList(newDatas, true);
+        } else {
+            adapter.updateList(null, false);
+        }
+    }
+
+    //下拉刷新的东西写这里
+    @Override
+    public void onRefresh() {
+        refreshLayout.setRefreshing(true);
+        adapter.resetDatas();
+        updateRecyclerView(0, PAGE_COUNT);
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                refreshLayout.setRefreshing(false);
+            }
+        }, 1000);
     }
 
     @Override
