@@ -32,6 +32,8 @@ import cn.itcase.ovo.utils.StreamChangeStrUtils;
 public class TabFiveFragment extends androidx.fragment.app.Fragment {
 
     private Button setup;
+    private Button follow;
+    int flag = 0;
 
     private ArrayList<Fragment> fragments;
     private FragmentTabAdapter tabAdapter;
@@ -101,6 +103,25 @@ public class TabFiveFragment extends androidx.fragment.app.Fragment {
 
         new Thread(network).start();
         setup=view.findViewById(R.id.me_setting);
+        follow=view.findViewById(R.id.me_follow);
+        follow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (flag) {
+                    case 0:
+                        v.setActivated(true);
+                        flag = 1;
+                        follow.setText("取消关注");
+                        break;
+                    case 1:
+                        v.setActivated(false);
+                        flag = 0;
+                        follow.setText("关注");
+                        break;
+                }
+            }
+        });
+        
         imageView=view.findViewById(R.id.me_touxiang);
         tvTabOne=view.findViewById(R.id.c_tv_tab_one);
         tvTabTwo=view.findViewById(R.id.c_tv_tab_two);
