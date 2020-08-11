@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">OVO</string>
+
+    <drawable name="clr_normal1">#6193BA</drawable>
+    <drawable name="clr_pressed1">#586695</drawable>
+
+    <drawable name="clr_normal2">#4682b4</drawable>
+    <drawable name="clr_pressed2">#586695</drawable>
+
+    <drawable name="clr_normal3">#8674a1</drawable>
+    <drawable name="clr_pressed3">#586695</drawable>
+
+    <drawable name="before_follow">#971B12</drawable>
+    <drawable name="after_follow">#dddddd</drawable>
+
+</resources>
