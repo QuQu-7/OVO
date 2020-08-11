@@ -1,68 +1,54 @@
-package cn.itcase.ovo;
+package cn.itcase.ovo_ui;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.GridView;
 
-
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ImageAdapterOne extends BaseAdapter {
-    private Context mContext;
 
-    public ImageAdapterOne(Context c) {
-        mContext = c;
+    private ArrayList<HashMap<String, Object>> myList;
+    private Context mContext;
+    private ImageView img;
+    private View deleteView;
+    private boolean isShowDelete;
+
+    public ImageAdapterOne(Context mContext,ArrayList<HashMap<String, Object>> myList) {
+        this.mContext = mContext;
+        this.myList = myList;
+    }
+    public void setIsShowDelete(boolean isShowDelete){
+        this.isShowDelete=isShowDelete;
+        notifyDataSetChanged();
     }
 
     public int getCount() {
-        return mThumbIds.length;
+        return myList.size();
     }
 
     public Object getItem(int position) {
-        return null;
+        return myList.get(position);
     }
 
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
-    // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView;
-        if (convertView == null) { // if it's not recycled, initialize some
-            // attributes
-            imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(360, 480));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(0, 0, 0, 0);
-        } else {
-            imageView = (ImageView) convertView;
-        }
-
-        imageView.setImageResource(mThumbIds[position]);
-        return imageView;
+        convertView = LayoutInflater.from(mContext).inflate(R.layout.grid_item, null);
+        img = convertView.findViewById(R.id.grid_item_image);
+        deleteView=convertView.findViewById(R.id.grid_item_delete);
+        deleteView.setVisibility(isShowDelete?View.VISIBLE:View.GONE);//设置删除按钮是否显示
+        img.setBackgroundResource(myList.get(position).get("image").hashCode());
+        return convertView;
     }
-
-    private Integer[] mThumbIds = { R.drawable.cat,R.drawable.cat,
-            R.drawable.cat,R.drawable.cat,
-            R.drawable.cat,R.drawable.cat,
-            R.drawable.cat,R.drawable.cat,
-            R.drawable.cat,R.drawable.cat,
-            R.drawable.cat,R.drawable.cat,
-            R.drawable.cat,R.drawable.cat,
-            R.drawable.cat,R.drawable.cat,
-            R.drawable.cat,R.drawable.cat,
-            R.drawable.cat,R.drawable.cat,
-            R.drawable.cat,R.drawable.cat,
-            R.drawable.cat,R.drawable.cat,
-            R.drawable.cat,R.drawable.cat,
-            R.drawable.cat,R.drawable.cat,
-            R.drawable.cat,R.drawable.cat,
-            R.drawable.cat,R.drawable.cat,
-            R.drawable.cat,R.drawable.cat,
-            R.drawable.cat,R.drawable.cat};
 
 
 }
